@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-	faBolt,
-	faBars,
-	faTimes,
-	faPhone,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faTimes, faPhone } from "@fortawesome/free-solid-svg-icons";
 import "./Header.css";
 
 const Header = () => {
@@ -22,26 +17,36 @@ const Header = () => {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
+	const scrollToSection = (sectionId) => {
+		document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+		setIsMenuOpen(false);
+	};
+
 	return (
 		<header className={`header ${isScrolled ? "scrolled" : ""}`}>
 			<div className="container">
 				<div className="header-content">
-					<Link to="/" className="logo">
-						<div className="logo-icon">
-							<FontAwesomeIcon icon={faBolt} />
-						</div>
-						<div className="logo-text">
-							<span className="company-name">Emir Sarić</span>
-							<span className="company-subtitle">Električar</span>
-						</div>
-					</Link>
+					<div className="logo">
+						<span className="logo-name">Emir Sarić</span>
+						<span className="logo-title">Licencirani Električar</span>
+					</div>
 
 					<nav className={`nav ${isMenuOpen ? "nav-open" : ""}`}>
-						<Link to="/">Početna</Link>
-						<Link to="/usluge">Usluge</Link>
-						<Link to="/o-meni">O meni</Link>
-						<Link to="/referenci">Reference</Link>
-						<Link to="/kontakt">Kontakt</Link>
+						<a href="#home" onClick={() => scrollToSection("home")}>
+							Početna
+						</a>
+						<a href="#usluge" onClick={() => scrollToSection("usluge")}>
+							Usluge
+						</a>
+						<a href="#o-meni" onClick={() => scrollToSection("o-meni")}>
+							O meni
+						</a>
+						<a href="#referenci" onClick={() => scrollToSection("referenci")}>
+							Reference
+						</a>
+						<a href="#kontakt" onClick={() => scrollToSection("kontakt")}>
+							Kontakt
+						</a>
 					</nav>
 
 					<div className="header-actions">

@@ -23,39 +23,24 @@
 
 .logo {
 	display: flex;
-	align-items: center;
-	gap: 12px;
-	text-decoration: none;
-}
-
-.logo-icon {
-	width: 40px;
-	height: 40px;
-	background: #2563eb;
-	border-radius: 8px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: white;
-	font-size: 18px;
-}
-
-.logo-text {
-	display: flex;
 	flex-direction: column;
 }
 
-.company-name {
-	font-size: 18px;
+.logo-name {
+	font-size: 20px;
 	font-weight: 700;
 	color: #1a1a1a;
-	line-height: 1.2;
+	line-height: 1.1;
+	letter-spacing: -0.01em;
 }
 
-.company-subtitle {
-	font-size: 12px;
-	color: #6b7280;
-	font-weight: 500;
+.logo-title {
+	font-size: 11px;
+	color: #2563eb;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	margin-top: 1px;
 }
 
 .nav {
@@ -69,6 +54,7 @@
 	font-weight: 500;
 	font-size: 15px;
 	transition: color 0.2s ease;
+	cursor: pointer;
 }
 
 .nav a:hover {
@@ -142,7 +128,7 @@
 		display: none;
 	}
 
-	.company-subtitle {
+	.logo-title {
 		display: none;
 	}
 }

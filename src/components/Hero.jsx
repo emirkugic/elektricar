@@ -2,77 +2,89 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faPhone,
+	faEnvelope,
 	faCheckCircle,
 	faClock,
 	faShieldAlt,
-	faAward,
+	faTools,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Hero.css";
 
 const Hero = () => {
+	const scrollToSection = (sectionId) => {
+		document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+	};
+
 	return (
-		<section className="hero">
+		<section className="hero" id="home">
 			<div className="container">
 				<div className="hero-content">
-					<div className="hero-text">
-						<div className="hero-badge">
-							<FontAwesomeIcon icon={faAward} />
-							<span>Licencirani električar • 15+ godina iskustva</span>
-						</div>
-
-						<h1>Pouzdane elektro usluge za vaš dom i posao</h1>
+					<div className="hero-left">
+						<h1>Profesionalne elektro usluge u Sarajevu</h1>
 
 						<p className="hero-description">
-							Emir Sarić pruža profesionalne elektro usluge u Sarajevu i
-							okolini. Specijalizovan za stambene i poslovne objekte sa
-							garancijom kvaliteta i 24/7 podrškom.
+							Potrebni su vam elektro radovi? Emir Sarić je licencirani
+							električar sa 15 godina iskustva koji pruža pouzdane usluge za
+							stambene i poslovne objekte. Brza intervencija, kvalitetno
+							izvršavanje i garantovano zadovoljstvo.
 						</p>
 
 						<div className="hero-features">
 							<div className="feature">
+								<FontAwesomeIcon icon={faCheckCircle} />
+								<span>Licencirani i sertifikovani električar</span>
+							</div>
+							<div className="feature">
 								<FontAwesomeIcon icon={faClock} />
-								<span>24/7 Hitna pomoć</span>
+								<span>24/7 dostupnost za hitne slučajeve</span>
 							</div>
 							<div className="feature">
 								<FontAwesomeIcon icon={faShieldAlt} />
-								<span>Licencirani i osiguran</span>
+								<span>12 mjeseci garancije na sve radove</span>
 							</div>
 							<div className="feature">
-								<FontAwesomeIcon icon={faCheckCircle} />
-								<span>12 mjeseci garancije</span>
+								<FontAwesomeIcon icon={faTools} />
+								<span>Moderna oprema i alati</span>
 							</div>
 						</div>
 
-						<div className="hero-actions">
+						<div className="hero-cta">
 							<a href="tel:+38761456789" className="btn btn-primary">
 								<FontAwesomeIcon icon={faPhone} />
-								Pozovi odmah
+								Pozovite odmah
 							</a>
-							<a href="#usluge" className="btn btn-secondary">
-								Pogledaj usluge
-							</a>
-						</div>
-
-						<div className="hero-stats">
-							<div className="stat">
-								<div className="stat-number">500+</div>
-								<div className="stat-label">Završenih projekata</div>
-							</div>
-							<div className="stat">
-								<div className="stat-number">15+</div>
-								<div className="stat-label">Godina iskustva</div>
-							</div>
-							<div className="stat">
-								<div className="stat-number">24/7</div>
-								<div className="stat-label">Podrška</div>
-							</div>
+							<button
+								className="btn btn-secondary"
+								onClick={() => scrollToSection("kontakt")}
+							>
+								<FontAwesomeIcon icon={faEnvelope} />
+								Pošaljite poruku
+							</button>
 						</div>
 					</div>
 
-					<div className="hero-image">
-						<div className="image-placeholder">
-							<FontAwesomeIcon icon={faShieldAlt} />
-							<p>Profesionalni električni radovi</p>
+					<div className="hero-right">
+						<div className="hero-card">
+							<h3>Zašto odabrati Emira?</h3>
+							<ul>
+								<li>15+ godina iskustva u struci</li>
+								<li>500+ uspješno završenih projekata</li>
+								<li>Licencirani i osigurani električar</li>
+								<li>Besplatan pregled i procjena</li>
+								<li>Konkurentne cijene</li>
+								<li>24/7 podrška za hitne slučajeve</li>
+							</ul>
+
+							<div className="card-contact">
+								<div className="contact-info">
+									<strong>Kontakt:</strong>
+									<span>061/456-789</span>
+								</div>
+								<div className="contact-info">
+									<strong>Email:</strong>
+									<span>emir.saric@email.com</span>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
