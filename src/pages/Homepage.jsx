@@ -856,13 +856,6 @@ const Homepage = () => {
 				<div className="container">
 					<div className="footer-content">
 						<div className="footer-brand">
-							<div className="footer-logo">
-								<img
-									src="/logo.png"
-									alt="Emir Sarić Logo"
-									className="logo-image"
-								/>
-							</div>
 							<p>
 								Profesionalne elektro usluge u Sarajevu i okolini. Licencirani,
 								pouzdan i uvijek dostupan za vaše potrebe.
