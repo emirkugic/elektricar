@@ -23,6 +23,8 @@ import {
 	faQuoteLeft,
 	faArrowRight,
 	faPlay,
+	faImages,
+	faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Homepage.css";
 
@@ -37,6 +39,8 @@ const Homepage = () => {
 		message: "",
 	});
 	const [currentTestimonial, setCurrentTestimonial] = useState(0);
+	const [formSubmitted, setFormSubmitted] = useState(false);
+	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -60,10 +64,27 @@ const Homepage = () => {
 		setIsMenuOpen(false);
 	};
 
-	const handleFormSubmit = (e) => {
+	const handleFormSubmit = async (e) => {
 		e.preventDefault();
-		console.log("Form submitted:", formData);
-		// Handle form submission here
+		setIsSubmitting(true);
+
+		// Simulate form submission
+		setTimeout(() => {
+			setIsSubmitting(false);
+			setFormSubmitted(true);
+			setFormData({
+				name: "",
+				email: "",
+				phone: "",
+				service: "",
+				message: "",
+			});
+
+			// Hide success message after 5 seconds
+			setTimeout(() => {
+				setFormSubmitted(false);
+			}, 5000);
+		}, 1500);
 	};
 
 	const handleFormChange = (e) => {
@@ -160,22 +181,56 @@ const Homepage = () => {
 		{ number: "24/7", label: "Podrška" },
 	];
 
+	const galleryImages = [
+		{
+			url: "https://images.pexels.com/photos/1426620/pexels-photo-1426620.jpeg",
+			title: "Moderna LED rasvjeta",
+			description: "Instalacija LED sistema u poslovnom prostoru",
+		},
+		{
+			url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+			title: "Elektro instalacije",
+			description: "Kompletna instalacija u stambenom objektu",
+		},
+		{
+			url: "https://images.pexels.com/photos/96612/pexels-photo-96612.jpeg",
+			title: "Sigurnosni sistemi",
+			description: "Video nadzor i alarm sistemi",
+		},
+		{
+			url: "https://images.pexels.com/photos/9800002/pexels-photo-9800002.jpeg",
+			title: "EV punjači",
+			description: "Instalacija električnih punjača",
+		},
+		{
+			url: "https://images.pexels.com/photos/9242887/pexels-photo-9242887.jpeg",
+			title: "Profesionalna oprema",
+			description: "Korištenje najmodernijih alata",
+		},
+		{
+			url: "https://images.pexels.com/photos/8853504/pexels-photo-8853504.jpeg",
+			title: "Održavanje sistema",
+			description: "Redovno održavanje i provjere",
+		},
+	];
+
 	return (
 		<div className="homepage">
 			{/* Header */}
 			<header className={`header ${isScrolled ? "scrolled" : ""}`}>
+				<div className="header-electric-bg">
+					<div className="electric-spark spark-1"></div>
+					<div className="electric-spark spark-2"></div>
+					<div className="electric-spark spark-3"></div>
+				</div>
 				<div className="container">
 					<div className="header-content">
 						<div className="logo">
 							<img
 								src="/logo.png"
-								alt="Emir Sarić Logo"
+								alt="Emir Sarić - Licencirani Električar"
 								className="logo-image"
 							/>
-							<div className="logo-text">
-								<span className="logo-name">Emir Sarić</span>
-								<span className="logo-title">Licencirani Električar</span>
-							</div>
 						</div>
 
 						<nav className={`nav ${isMenuOpen ? "nav-open" : ""}`}>
@@ -184,6 +239,9 @@ const Homepage = () => {
 							</a>
 							<a href="#usluge" onClick={() => scrollToSection("usluge")}>
 								Usluge
+							</a>
+							<a href="#galerija" onClick={() => scrollToSection("galerija")}>
+								Galerija
 							</a>
 							<a href="#o-meni" onClick={() => scrollToSection("o-meni")}>
 								O meni
@@ -216,32 +274,32 @@ const Homepage = () => {
 			{/* Hero Section */}
 			<section className="hero" id="home">
 				<div className="hero-background">
-					<div className="hero-shapes">
-						<div className="shape shape-1"></div>
-						<div className="shape shape-2"></div>
-						<div className="shape shape-3"></div>
-					</div>
+					<img
+						src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
+						alt="Electrical work background"
+						className="hero-bg-image"
+					/>
+					<div className="hero-overlay"></div>
 				</div>
 
 				<div className="container">
 					<div className="hero-content">
 						<div className="hero-text">
 							<div className="hero-badge">
-								<FontAwesomeIcon icon={faAward} />
-								<span>
-									Licencirani električar • 15+ godina iskustva • 500+ projekata
-								</span>
+								<FontAwesomeIcon icon={faBolt} />
+								<span>Licencirani električar • 15+ godina iskustva</span>
 							</div>
 
 							<h1>
-								<span className="highlight">Profesionalni</span> elektro radovi
-								<br />u Sarajevu
+								Vaš <span className="highlight">pouzdani partner</span>
+								<br />
+								za sve elektro potrebe
 							</h1>
 
 							<p className="hero-description">
-								Vaš pouzdani partner za sve elektro potrebe. Od kompletnih
-								instalacija do hitnih intervencija - nudim vrhunsku uslugu sa
-								garancijom kvaliteta.
+								Profesionalne elektro usluge u Sarajevu i okolini. Od kompletnih
+								instalacija do hitnih intervencija - pružam vrhunsku uslugu sa
+								garancijom kvaliteta i dugogodišnjim iskustvom.
 							</p>
 
 							<div className="hero-features">
@@ -256,6 +314,10 @@ const Homepage = () => {
 								<div className="feature">
 									<FontAwesomeIcon icon={faShieldAlt} />
 									<span>12 mjeseci garancije</span>
+								</div>
+								<div className="feature">
+									<FontAwesomeIcon icon={faAward} />
+									<span>500+ uspješnih projekata</span>
 								</div>
 							</div>
 
@@ -284,24 +346,15 @@ const Homepage = () => {
 						</div>
 
 						<div className="hero-visual">
-							<div className="hero-card">
-								<div className="card-header">
+							<div className="hero-image-card">
+								<img
+									src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+									alt="Professional electrical work"
+									className="hero-work-image"
+								/>
+								<div className="work-badge">
 									<FontAwesomeIcon icon={faBolt} />
-									<span>Profesionalna usluga</span>
-								</div>
-								<div className="card-content">
-									<h3>Brzo. Sigurno. Profesionalno.</h3>
-									<p>Sve što trebate za vaše elektro potrebe</p>
-									<div className="card-features">
-										<div className="card-feature">
-											<FontAwesomeIcon icon={faLightbulb} />
-											<span>Moderna rješenja</span>
-										</div>
-										<div className="card-feature">
-											<FontAwesomeIcon icon={faWrench} />
-											<span>Stručan pristup</span>
-										</div>
-									</div>
+									<span>Profesionalan rad</span>
 								</div>
 							</div>
 						</div>
@@ -349,7 +402,7 @@ const Homepage = () => {
 
 					<div className="services-cta">
 						<div className="cta-content">
-							<h3>Trebate custom rješenje?</h3>
+							<h3>Trebate prilagođeno rješenje?</h3>
 							<p>
 								Kontaktirajte nas za prilagođenu ponudu prema vašim potrebama
 							</p>
@@ -357,6 +410,40 @@ const Homepage = () => {
 						<a href="tel:+38761456789" className="btn btn-primary">
 							<FontAwesomeIcon icon={faPhone} />
 							Pozovite nas
+						</a>
+					</div>
+				</div>
+			</section>
+
+			{/* Gallery Section */}
+			<section className="gallery" id="galerija">
+				<div className="container">
+					<div className="section-header">
+						<h2>Naši radovi</h2>
+						<p>Pogledajte neke od naših uspješno završenih projekata</p>
+					</div>
+
+					<div className="gallery-grid">
+						{galleryImages.map((image, index) => (
+							<div key={index} className="gallery-item">
+								<div className="gallery-image">
+									<img src={image.url} alt={image.title} />
+									<div className="gallery-overlay">
+										<div className="gallery-content">
+											<h4>{image.title}</h4>
+											<p>{image.description}</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
+
+					<div className="gallery-cta">
+						<p>Želite vidjeti više naših radova?</p>
+						<a href="tel:+38761456789" className="btn btn-primary">
+							<FontAwesomeIcon icon={faImages} />
+							Pozovite za više informacija
 						</a>
 					</div>
 				</div>
@@ -533,7 +620,7 @@ const Homepage = () => {
 									</div>
 									<div className="method-info">
 										<h4>Email</h4>
-										<p>emir.saric@email.com</p>
+										<p>emir.saric@gmail.com</p>
 										<span>Brz odgovor</span>
 									</div>
 								</div>
@@ -576,83 +663,116 @@ const Homepage = () => {
 							</div>
 						</div>
 
-						<form className="contact-form" onSubmit={handleFormSubmit}>
-							<h3>Pošaljite poruku</h3>
+						<div className="contact-form-container">
+							{formSubmitted && (
+								<div className="success-message">
+									<FontAwesomeIcon icon={faCheck} />
+									<h4>Poruka uspješno poslana!</h4>
+									<p>
+										Hvala vam na povjerenju. Kontaktirat ću vas u najkraćem
+										roku.
+									</p>
+								</div>
+							)}
 
-							<div className="form-row">
+							<form className="contact-form" onSubmit={handleFormSubmit}>
+								<h3>Pošaljite poruku</h3>
+
+								<div className="form-row">
+									<div className="form-group">
+										<label htmlFor="name">Ime i prezime</label>
+										<input
+											type="text"
+											id="name"
+											name="name"
+											value={formData.name}
+											onChange={handleFormChange}
+											required
+											disabled={isSubmitting}
+										/>
+									</div>
+									<div className="form-group">
+										<label htmlFor="phone">Telefon</label>
+										<input
+											type="tel"
+											id="phone"
+											name="phone"
+											value={formData.phone}
+											onChange={handleFormChange}
+											required
+											disabled={isSubmitting}
+										/>
+									</div>
+								</div>
+
 								<div className="form-group">
-									<label htmlFor="name">Ime i prezime</label>
+									<label htmlFor="email">Email</label>
 									<input
-										type="text"
-										id="name"
-										name="name"
-										value={formData.name}
+										type="email"
+										id="email"
+										name="email"
+										value={formData.email}
 										onChange={handleFormChange}
 										required
+										disabled={isSubmitting}
 									/>
 								</div>
+
 								<div className="form-group">
-									<label htmlFor="phone">Telefon</label>
-									<input
-										type="tel"
-										id="phone"
-										name="phone"
-										value={formData.phone}
+									<label htmlFor="service">Vrsta usluge</label>
+									<select
+										id="service"
+										name="service"
+										value={formData.service}
 										onChange={handleFormChange}
 										required
-									/>
+										disabled={isSubmitting}
+									>
+										<option value="">Odaberite uslugu</option>
+										<option value="stambeni">Stambeni objekti</option>
+										<option value="poslovni">Poslovni prostori</option>
+										<option value="popravke">Popravke i održavanje</option>
+										<option value="sigurnost">Sigurnosni sistemi</option>
+										<option value="hitno">Hitni poziv</option>
+										<option value="punjaci">EV punjači</option>
+									</select>
 								</div>
-							</div>
 
-							<div className="form-group">
-								<label htmlFor="email">Email</label>
-								<input
-									type="email"
-									id="email"
-									name="email"
-									value={formData.email}
-									onChange={handleFormChange}
-									required
-								/>
-							</div>
+								<div className="form-group">
+									<label htmlFor="message">Opis radova</label>
+									<textarea
+										id="message"
+										name="message"
+										rows="4"
+										value={formData.message}
+										onChange={handleFormChange}
+										placeholder="Opišite koje radove trebate..."
+										required
+										disabled={isSubmitting}
+									></textarea>
+								</div>
 
-							<div className="form-group">
-								<label htmlFor="service">Vrsta usluge</label>
-								<select
-									id="service"
-									name="service"
-									value={formData.service}
-									onChange={handleFormChange}
-									required
+								<button
+									type="submit"
+									className={`btn btn-primary ${
+										isSubmitting ? "submitting" : ""
+									}`}
+									disabled={isSubmitting}
 								>
-									<option value="">Odaberite uslugu</option>
-									<option value="stambeni">Stambeni objekti</option>
-									<option value="poslovni">Poslovni prostori</option>
-									<option value="popravke">Popravke i održavanje</option>
-									<option value="sigurnost">Sigurnosni sistemi</option>
-									<option value="hitno">Hitni poziv</option>
-									<option value="punjaci">EV punjači</option>
-								</select>
-							</div>
-
-							<div className="form-group">
-								<label htmlFor="message">Opis radova</label>
-								<textarea
-									id="message"
-									name="message"
-									rows="4"
-									value={formData.message}
-									onChange={handleFormChange}
-									placeholder="Opišite koje radove trebate..."
-									required
-								></textarea>
-							</div>
-
-							<button type="submit" className="btn btn-primary">
-								<FontAwesomeIcon icon={faPaperPlane} />
-								Pošaljite poruku
-							</button>
-						</form>
+									{isSubmitting ? (
+										<>
+											<div className="loading-spinner"></div>
+											Šalje se...
+										</>
+									) : (
+										<>
+											<FontAwesomeIcon icon={faPaperPlane} />
+											Pošaljite poruku
+										</>
+									)}
+								</button>
+							</form>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -668,10 +788,6 @@ const Homepage = () => {
 									alt="Emir Sarić Logo"
 									className="logo-image"
 								/>
-								<div className="logo-text">
-									<span className="logo-name">Emir Sarić</span>
-									<span className="logo-title">Licencirani Električar</span>
-								</div>
 							</div>
 							<p>
 								Profesionalne elektro usluge u Sarajevu i okolini. Licencirani,
@@ -691,9 +807,9 @@ const Homepage = () => {
 									<FontAwesomeIcon icon={faPhone} />
 									061/456-789
 								</a>
-								<a href="mailto:emir.saric@email.com">
+								<a href="mailto:emir.saric@gmail.com">
 									<FontAwesomeIcon icon={faEnvelope} />
-									emir.saric@email.com
+									emir.saric@gmail.com
 								</a>
 								<span>
 									<FontAwesomeIcon icon={faMapMarkerAlt} />
@@ -715,10 +831,13 @@ const Homepage = () => {
 					</div>
 
 					<div className="footer-bottom">
-						<p>&copy; 2024 Emir Sarić. Sva prava zadržana.</p>
+						<p>&copy; 2025 Emir Sarić. Sva prava zadržana.</p>
 						<div className="footer-links">
 							<a href="#usluge" onClick={() => scrollToSection("usluge")}>
 								Usluge
+							</a>
+							<a href="#galerija" onClick={() => scrollToSection("galerija")}>
+								Galerija
 							</a>
 							<a href="#o-meni" onClick={() => scrollToSection("o-meni")}>
 								O meni
