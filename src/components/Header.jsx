@@ -15,48 +15,45 @@ const Header = () => {
 
 	useEffect(() => {
 		const handleScroll = () => {
-			setIsScrolled(window.scrollY > 50);
+			setIsScrolled(window.scrollY > 20);
 		};
 
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
-	const toggleMenu = () => {
-		setIsMenuOpen(!isMenuOpen);
-	};
-
 	return (
 		<header className={`header ${isScrolled ? "scrolled" : ""}`}>
 			<div className="container">
-				<div className="nav-wrapper">
+				<div className="header-content">
 					<Link to="/" className="logo">
-						<FontAwesomeIcon icon={faBolt} className="logo-icon" />
-						<span>ElektriĹar</span>
+						<div className="logo-icon">
+							<FontAwesomeIcon icon={faBolt} />
+						</div>
+						<div className="logo-text">
+							<span className="company-name">Emir Sarić</span>
+							<span className="company-subtitle">Električar</span>
+						</div>
 					</Link>
 
 					<nav className={`nav ${isMenuOpen ? "nav-open" : ""}`}>
-						<Link to="/" onClick={() => setIsMenuOpen(false)}>
-							Početna
-						</Link>
-						<Link to="/usluge" onClick={() => setIsMenuOpen(false)}>
-							Usluge
-						</Link>
-						<Link to="/o-meni" onClick={() => setIsMenuOpen(false)}>
-							O meni
-						</Link>
-						<Link to="/kontakt" onClick={() => setIsMenuOpen(false)}>
-							Kontakt
-						</Link>
+						<Link to="/">Početna</Link>
+						<Link to="/usluge">Usluge</Link>
+						<Link to="/o-meni">O meni</Link>
+						<Link to="/referenci">Reference</Link>
+						<Link to="/kontakt">Kontakt</Link>
 					</nav>
 
 					<div className="header-actions">
-						<a href="tel:+38761123456" className="phone-btn">
+						<a href="tel:+38761456789" className="phone-link">
 							<FontAwesomeIcon icon={faPhone} />
-							<span>061 123 456</span>
+							<span>061/456-789</span>
 						</a>
 
-						<button className="menu-toggle" onClick={toggleMenu}>
+						<button
+							className="menu-toggle"
+							onClick={() => setIsMenuOpen(!isMenuOpen)}
+						>
 							<FontAwesomeIcon icon={isMenuOpen ? faTimes : faBars} />
 						</button>
 					</div>
