@@ -1,0 +1,144 @@
+.footer {
+	background: linear-gradient(135deg, #2c3e50, #34495e);
+	color: white;
+	padding: 50px 0 20px;
+	margin-top: auto;
+}
+
+.footer-content {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 40px;
+	margin-bottom: 30px;
+}
+
+.footer-section h3 {
+	color: #f39c12;
+	margin-bottom: 20px;
+	font-size: 1.3rem;
+	font-weight: 600;
+}
+
+.footer-logo {
+	display: flex;
+	align-items: center;
+	font-size: 1.5rem;
+	font-weight: 700;
+	margin-bottom: 15px;
+}
+
+.footer-logo .logo-icon {
+	margin-right: 10px;
+	color: #f39c12;
+}
+
+.footer-description {
+	color: #bdc3c7;
+	line-height: 1.6;
+	margin-bottom: 20px;
+}
+
+.social-links {
+	display: flex;
+	gap: 15px;
+}
+
+.social-links a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	background: rgba(243, 156, 18, 0.2);
+	color: #f39c12;
+	border-radius: 50%;
+	transition: all 0.3s ease;
+	text-decoration: none;
+}
+
+.social-links a:hover {
+	background: #f39c12;
+	color: white;
+	transform: translateY(-3px);
+}
+
+.contact-item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 12px;
+	color: #bdc3c7;
+}
+
+.contact-item svg {
+	color: #f39c12;
+	width: 16px;
+}
+
+.working-hours {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.hours-item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	color: #bdc3c7;
+}
+
+.hours-item svg {
+	color: #f39c12;
+	width: 16px;
+}
+
+.hours-item div {
+	display: flex;
+	flex-direction: column;
+}
+
+.day {
+	font-weight: 600;
+}
+
+.time {
+	font-size: 0.9rem;
+	opacity: 0.8;
+}
+
+.emergency {
+	background: rgba(231, 76, 60, 0.2);
+	padding: 8px 12px;
+	border-radius: 20px;
+	color: #e74c3c;
+	font-weight: 600;
+	justify-content: center;
+	margin-top: 10px;
+}
+
+.footer-bottom {
+	text-align: center;
+	padding-top: 20px;
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	color: #95a5a6;
+}
+
+@media (max-width: 768px) {
+	.footer {
+		padding: 30px 0 15px;
+	}
+
+	.footer-content {
+		grid-template-columns: 1fr;
+		gap: 30px;
+	}
+
+	.footer-section {
+		text-align: center;
+	}
+
+	.social-links {
+		justify-content: center;
+	}
+}

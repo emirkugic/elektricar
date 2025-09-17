@@ -1,0 +1,239 @@
+.hero {
+	position: relative;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+	padding: 100px 0 50px;
+}
+
+.hero-background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	z-index: -2;
+}
+
+.hero-background::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: radial-gradient(
+			circle at 20% 50%,
+			rgba(120, 119, 198, 0.3) 0%,
+			transparent 50%
+		),
+		radial-gradient(
+			circle at 80% 20%,
+			rgba(255, 119, 198, 0.3) 0%,
+			transparent 50%
+		),
+		radial-gradient(
+			circle at 40% 80%,
+			rgba(120, 219, 255, 0.3) 0%,
+			transparent 50%
+		);
+	z-index: -1;
+}
+
+.hero-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.4);
+	z-index: -1;
+}
+
+.hero-content {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 60px;
+	align-items: center;
+}
+
+.hero-text h1 {
+	font-size: 3.5rem;
+	font-weight: 700;
+	color: white;
+	margin-bottom: 20px;
+	line-height: 1.2;
+}
+
+.highlight {
+	background: linear-gradient(135deg, #f39c12, #e67e22);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.hero-description {
+	font-size: 1.2rem;
+	color: rgba(255, 255, 255, 0.9);
+	margin-bottom: 30px;
+	line-height: 1.6;
+}
+
+.hero-features {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin-bottom: 40px;
+}
+
+.feature {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	color: white;
+	font-weight: 500;
+}
+
+.feature svg {
+	color: #f39c12;
+	font-size: 1.2rem;
+}
+
+.hero-actions {
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+
+.btn-primary {
+	background: linear-gradient(135deg, #f39c12, #e67e22);
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.hero-visual {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.hero-card {
+	background: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	padding: 40px 30px;
+	border-radius: 20px;
+	text-align: center;
+	color: white;
+	position: relative;
+	overflow: hidden;
+	max-width: 300px;
+	transform: translateY(20px);
+	animation: float 6s ease-in-out infinite;
+}
+
+.hero-card::before {
+	content: "";
+	position: absolute;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
+	background: linear-gradient(
+		45deg,
+		transparent,
+		rgba(243, 156, 18, 0.1),
+		transparent
+	);
+	animation: rotate 20s linear infinite;
+}
+
+.card-icon {
+	font-size: 3rem;
+	color: #f39c12;
+	margin-bottom: 20px;
+}
+
+.hero-card h3 {
+	font-size: 1.5rem;
+	margin-bottom: 15px;
+	font-weight: 600;
+}
+
+.hero-card p {
+	color: rgba(255, 255, 255, 0.8);
+	margin-bottom: 20px;
+	line-height: 1.5;
+}
+
+.card-number {
+	font-size: 2rem;
+	font-weight: 700;
+	background: linear-gradient(135deg, #f39c12, #e67e22);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+@keyframes float {
+	0%,
+	100% {
+		transform: translateY(20px);
+	}
+	50% {
+		transform: translateY(0px);
+	}
+}
+
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@media (max-width: 968px) {
+	.hero-content {
+		grid-template-columns: 1fr;
+		gap: 40px;
+		text-align: center;
+	}
+
+	.hero-text h1 {
+		font-size: 2.5rem;
+	}
+
+	.hero-actions {
+		justify-content: center;
+	}
+}
+
+@media (max-width: 768px) {
+	.hero {
+		padding: 120px 0 30px;
+	}
+
+	.hero-text h1 {
+		font-size: 2rem;
+	}
+
+	.hero-description {
+		font-size: 1.1rem;
+	}
+
+	.hero-actions {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.btn {
+		width: 100%;
+		max-width: 250px;
+		justify-content: center;
+	}
+}
