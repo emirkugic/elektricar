@@ -17,6 +17,12 @@ import {
 	faAward,
 	faUsers,
 	faPaperPlane,
+	faLightbulb,
+	faWrench,
+	faStar,
+	faQuoteLeft,
+	faArrowRight,
+	faPlay,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Homepage.css";
 
@@ -30,14 +36,23 @@ const Homepage = () => {
 		service: "",
 		message: "",
 	});
+	const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
 	useEffect(() => {
 		const handleScroll = () => {
-			setIsScrolled(window.scrollY > 20);
+			setIsScrolled(window.scrollY > 50);
 		};
 
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
+
+	useEffect(() => {
+		const testimonialInterval = setInterval(() => {
+			setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+		}, 5000);
+
+		return () => clearInterval(testimonialInterval);
 	}, []);
 
 	const scrollToSection = (sectionId) => {
@@ -63,8 +78,9 @@ const Homepage = () => {
 			icon: faHome,
 			title: "Stambeni objekti",
 			description:
-				"Kompletne elektro instalacije za stanove, kuće i vikendice. Kvalitetno i sigurno.",
+				"Kompletne elektro instalacije za stanove, kuće i vikendice. Moderna rješenja sa garancijom kvaliteta.",
 			price: "Od 50 KM",
+			features: ["Kompletna instalacija", "LED rasvjeta", "Sigurnosni sistemi"],
 		},
 		{
 			icon: faIndustry,
@@ -72,20 +88,31 @@ const Homepage = () => {
 			description:
 				"Elektro radovi za kancelarije, prodavnice, restorane i druge komercijalne objekte.",
 			price: "Po dogovoru",
+			features: [
+				"Profesionalna instalacija",
+				"Energetska efikasnost",
+				"24/7 podrška",
+			],
 		},
 		{
 			icon: faTools,
 			title: "Popravke & Održavanje",
 			description:
-				"Brze intervencije za sve vrste elektro kvarova. Dostupan 24/7.",
+				"Brze intervencije za sve vrste elektro kvarova. Dostupan 24/7 za hitne slučajeve.",
 			price: "Od 30 KM",
+			features: [
+				"Hitne intervencije",
+				"Dijagnostika",
+				"Preventivno održavanje",
+			],
 		},
 		{
 			icon: faShieldAlt,
 			title: "Sigurnosni sistemi",
 			description:
-				"Instalacija video nadzora, alarma i sistema kontrole pristupa.",
+				"Instalacija video nadzora, alarma i sistema kontrole pristupa za maksimalnu sigurnost.",
 			price: "Od 200 KM",
+			features: ["Video nadzor", "Alarm sistemi", "Kontrola pristupa"],
 		},
 		{
 			icon: faBolt,
@@ -93,6 +120,7 @@ const Homepage = () => {
 			description:
 				"24/7 dostupnost za sve elektro hitne slučajeve u Sarajevu i okolini.",
 			price: "Uvijek dostupan",
+			features: ["24/7 dostupnost", "Brza reakcija", "Profesionalna oprema"],
 		},
 		{
 			icon: faPlug,
@@ -100,7 +128,36 @@ const Homepage = () => {
 			description:
 				"Instalacija kućnih i javnih punjača za električna i hibridna vozila.",
 			price: "Od 800 KM",
+			features: ["Kućni punjači", "Javni punjači", "Smart funkcije"],
 		},
+	];
+
+	const testimonials = [
+		{
+			name: "Amira Hasić",
+			role: "Vlasnica stana",
+			text: "Emir je uradio kompletnu instalaciju u našem novom stanu. Profesionalno, uredno i u dogovorenom roku. Preporučujem svima!",
+			rating: 5,
+		},
+		{
+			name: "Muhamed Dizdar",
+			role: "Vlasnik restorana",
+			text: "Kada nam je pala struja u restoranu, Emir je došao u roku od sat vremena. Brzo je riješio problem i spasio nam večernji rad.",
+			rating: 5,
+		},
+		{
+			name: "Sabina Muratović",
+			role: "Direktor firme",
+			text: "Instalirao je LED rasvjetu u našem uredu. Sada imamo savršenu rasvjetu i ušteđujemo na struji. Odličan posao!",
+			rating: 5,
+		},
+	];
+
+	const stats = [
+		{ number: "500+", label: "Projekata" },
+		{ number: "15+", label: "Godina iskustva" },
+		{ number: "100%", label: "Zadovoljnih klijenata" },
+		{ number: "24/7", label: "Podrška" },
 	];
 
 	return (
@@ -110,8 +167,15 @@ const Homepage = () => {
 				<div className="container">
 					<div className="header-content">
 						<div className="logo">
-							<span className="logo-name">Emir Sarić</span>
-							<span className="logo-title">Električar</span>
+							<img
+								src="/logo.png"
+								alt="Emir Sarić Logo"
+								className="logo-image"
+							/>
+							<div className="logo-text">
+								<span className="logo-name">Emir Sarić</span>
+								<span className="logo-title">Licencirani Električar</span>
+							</div>
 						</div>
 
 						<nav className={`nav ${isMenuOpen ? "nav-open" : ""}`}>
@@ -123,6 +187,9 @@ const Homepage = () => {
 							</a>
 							<a href="#o-meni" onClick={() => scrollToSection("o-meni")}>
 								O meni
+							</a>
+							<a href="#recenzije" onClick={() => scrollToSection("recenzije")}>
+								Recenzije
 							</a>
 							<a href="#kontakt" onClick={() => scrollToSection("kontakt")}>
 								Kontakt
@@ -148,20 +215,33 @@ const Homepage = () => {
 
 			{/* Hero Section */}
 			<section className="hero" id="home">
+				<div className="hero-background">
+					<div className="hero-shapes">
+						<div className="shape shape-1"></div>
+						<div className="shape shape-2"></div>
+						<div className="shape shape-3"></div>
+					</div>
+				</div>
+
 				<div className="container">
 					<div className="hero-content">
 						<div className="hero-text">
 							<div className="hero-badge">
 								<FontAwesomeIcon icon={faAward} />
-								<span>Licencirani električar • 15+ godina iskustva</span>
+								<span>
+									Licencirani električar • 15+ godina iskustva • 500+ projekata
+								</span>
 							</div>
 
-							<h1>Profesionalni elektro radovi u Sarajevu</h1>
+							<h1>
+								<span className="highlight">Profesionalni</span> elektro radovi
+								<br />u Sarajevu
+							</h1>
 
 							<p className="hero-description">
-								Trebaju vam pouzdani elektro radovi? Emir Sarić je vaš ekspert
-								za sve vrste električnih instalacija, popravki i održavanja.
-								Brzo, sigurno i profesionalno.
+								Vaš pouzdani partner za sve elektro potrebe. Od kompletnih
+								instalacija do hitnih intervencija - nudim vrhunsku uslugu sa
+								garancijom kvaliteta.
 							</p>
 
 							<div className="hero-features">
@@ -180,7 +260,7 @@ const Homepage = () => {
 							</div>
 
 							<div className="hero-actions">
-								<a href="tel:+38761456789" className="btn btn-primary">
+								<a href="tel:+38761456789" className="btn btn-primary pulse">
 									<FontAwesomeIcon icon={faPhone} />
 									Pozovite odmah
 								</a>
@@ -188,22 +268,40 @@ const Homepage = () => {
 									className="btn btn-secondary"
 									onClick={() => scrollToSection("kontakt")}
 								>
+									<FontAwesomeIcon icon={faPaperPlane} />
 									Zatražite ponudu
 								</button>
 							</div>
 
 							<div className="hero-stats">
-								<div className="stat">
-									<span className="stat-number">500+</span>
-									<span className="stat-label">Projekata</span>
+								{stats.map((stat, index) => (
+									<div key={index} className="stat">
+										<span className="stat-number">{stat.number}</span>
+										<span className="stat-label">{stat.label}</span>
+									</div>
+								))}
+							</div>
+						</div>
+
+						<div className="hero-visual">
+							<div className="hero-card">
+								<div className="card-header">
+									<FontAwesomeIcon icon={faBolt} />
+									<span>Profesionalna usluga</span>
 								</div>
-								<div className="stat">
-									<span className="stat-number">15+</span>
-									<span className="stat-label">Godina</span>
-								</div>
-								<div className="stat">
-									<span className="stat-number">24/7</span>
-									<span className="stat-label">Podrška</span>
+								<div className="card-content">
+									<h3>Brzo. Sigurno. Profesionalno.</h3>
+									<p>Sve što trebate za vaše elektro potrebe</p>
+									<div className="card-features">
+										<div className="card-feature">
+											<FontAwesomeIcon icon={faLightbulb} />
+											<span>Moderna rješenja</span>
+										</div>
+										<div className="card-feature">
+											<FontAwesomeIcon icon={faWrench} />
+											<span>Stručan pristup</span>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -216,26 +314,50 @@ const Homepage = () => {
 				<div className="container">
 					<div className="section-header">
 						<h2>Naše usluge</h2>
-						<p>Profesionalne elektro usluge za sve vaše potrebe</p>
+						<p>Kompletno rješenje za sve vaše elektro potrebe</p>
 					</div>
 
 					<div className="services-grid">
 						{services.map((service, index) => (
 							<div key={index} className="service-card">
-								<div className="service-icon">
-									<FontAwesomeIcon icon={service.icon} />
+								<div className="service-header">
+									<div className="service-icon">
+										<FontAwesomeIcon icon={service.icon} />
+									</div>
+									<div className="service-price">{service.price}</div>
 								</div>
 
 								<h3>{service.title}</h3>
 								<p>{service.description}</p>
 
-								<div className="service-price">{service.price}</div>
+								<div className="service-features">
+									{service.features.map((feature, idx) => (
+										<div key={idx} className="service-feature">
+											<FontAwesomeIcon icon={faCheckCircle} />
+											<span>{feature}</span>
+										</div>
+									))}
+								</div>
 
 								<a href="tel:+38761456789" className="service-btn">
-									Zatražite ponudu
+									<span>Zatražite ponudu</span>
+									<FontAwesomeIcon icon={faArrowRight} />
 								</a>
 							</div>
 						))}
+					</div>
+
+					<div className="services-cta">
+						<div className="cta-content">
+							<h3>Trebate custom rješenje?</h3>
+							<p>
+								Kontaktirajte nas za prilagođenu ponudu prema vašim potrebama
+							</p>
+						</div>
+						<a href="tel:+38761456789" className="btn btn-primary">
+							<FontAwesomeIcon icon={faPhone} />
+							Pozovite nas
+						</a>
 					</div>
 				</div>
 			</section>
@@ -243,67 +365,133 @@ const Homepage = () => {
 			{/* About Section */}
 			<section className="about" id="o-meni">
 				<div className="container">
-					<div className="section-header">
-						<h2>O meni</h2>
-						<p>Vaš pouzdani partner za sve elektro radove</p>
-					</div>
-
 					<div className="about-content">
 						<div className="about-text">
-							<h3>Emir Sarić - Licencirani Električar</h3>
-							<p>
-								Sa više od 15 godina iskustva u elektro struci, specializovan
-								sam za sve vrste električnih instalacija i popravki. Moj cilj je
-								da svakom klijentu pružim vrhunsku uslugu, siguran rad i
-								dugotrajno rješenje.
-							</p>
+							<div className="section-header">
+								<h2>O meni</h2>
+								<p>Vaš pouzdani partner za sve elektro radove</p>
+							</div>
+
+							<div className="about-story">
+								<h3>Emir Sarić - Licencirani Električar</h3>
+								<p>
+									Sa više od 15 godina iskustva u elektro struci, posvećen sam
+									pružanju vrhunskih usluga svim klijentima. Moja strast prema
+									ovom poslu i kontinuirana edukacija omogućavaju mi da pratim
+									najnovije tehnologije i standarde u struci.
+								</p>
+								<p>
+									Vjerujem da kvalitetan rad i poštena cijena čine temelj
+									uspješnog poslovanja. Zato svaki projekat pristupam sa
+									maksimalnom pažnjom i profesionalizmom.
+								</p>
+							</div>
+
+							<div className="about-certifications">
+								<div className="certification">
+									<FontAwesomeIcon icon={faAward} />
+									<div>
+										<h4>Licencirani električar</h4>
+										<p>Potpuno licencirani i certificirani u BiH</p>
+									</div>
+								</div>
+								<div className="certification">
+									<FontAwesomeIcon icon={faShieldAlt} />
+									<div>
+										<h4>Osiguran rad</h4>
+										<p>Svi radovi su pokriveni osiguranjem</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div className="about-stats">
+							<div className="stats-grid">
+								{stats.map((stat, index) => (
+									<div key={index} className="stat-card">
+										<div className="stat-icon">
+											<FontAwesomeIcon
+												icon={
+													index === 0
+														? faUsers
+														: index === 1
+														? faAward
+														: index === 2
+														? faStar
+														: faClock
+												}
+											/>
+										</div>
+										<h4>{stat.number}</h4>
+										<p>{stat.label}</p>
+									</div>
+								))}
+							</div>
 
 							<div className="about-highlights">
 								<div className="highlight">
-									<h4>Iskustvo</h4>
+									<h4>Iskustvo koje možete vjerovati</h4>
 									<p>
 										15+ godina rada u struci sa 500+ uspješno završenih
 										projekata
 									</p>
 								</div>
 								<div className="highlight">
-									<h4>Licenca</h4>
-									<p>Potpuno licencirani i certificirani električar u BiH</p>
-								</div>
-								<div className="highlight">
-									<h4>Garancija</h4>
+									<h4>Garancija kvaliteta</h4>
 									<p>
 										12 mjeseci garancije na sve radove i korišćene materijale
 									</p>
 								</div>
 								<div className="highlight">
-									<h4>Dostupnost</h4>
-									<p>24/7 podrška za sve hitne elektro slučajeve</p>
+									<h4>24/7 dostupnost</h4>
+									<p>Uvijek dostupan za hitne slučajeve u Sarajevu i okolini</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			{/* Testimonials Section */}
+			<section className="testimonials" id="recenzije">
+				<div className="container">
+					<div className="section-header">
+						<h2>Što kažu naši klijenti</h2>
+						<p>Ponos nam je što imamo zadovoljne klijente</p>
+					</div>
+
+					<div className="testimonials-container">
+						<div className="testimonial-card active">
+							<div className="testimonial-content">
+								<FontAwesomeIcon icon={faQuoteLeft} className="quote-icon" />
+								<p>"{testimonials[currentTestimonial].text}"</p>
+
+								<div className="testimonial-author">
+									<div className="author-info">
+										<h4>{testimonials[currentTestimonial].name}</h4>
+										<span>{testimonials[currentTestimonial].role}</span>
+									</div>
+									<div className="rating">
+										{[...Array(testimonials[currentTestimonial].rating)].map(
+											(_, i) => (
+												<FontAwesomeIcon key={i} icon={faStar} />
+											)
+										)}
+									</div>
 								</div>
 							</div>
 						</div>
 
-						<div className="about-stats">
-							<div className="stat-card">
-								<FontAwesomeIcon icon={faUsers} />
-								<h4>500+</h4>
-								<p>Zadovoljnih klijenata</p>
-							</div>
-							<div className="stat-card">
-								<FontAwesomeIcon icon={faAward} />
-								<h4>15+</h4>
-								<p>Godina iskustva</p>
-							</div>
-							<div className="stat-card">
-								<FontAwesomeIcon icon={faShieldAlt} />
-								<h4>100%</h4>
-								<p>Garancija kvaliteta</p>
-							</div>
-							<div className="stat-card">
-								<FontAwesomeIcon icon={faClock} />
-								<h4>24/7</h4>
-								<p>Hitna pomoć</p>
-							</div>
+						<div className="testimonial-nav">
+							{testimonials.map((_, index) => (
+								<button
+									key={index}
+									className={`nav-dot ${
+										currentTestimonial === index ? "active" : ""
+									}`}
+									onClick={() => setCurrentTestimonial(index)}
+								></button>
+							))}
 						</div>
 					</div>
 				</div>
@@ -319,16 +507,20 @@ const Homepage = () => {
 
 					<div className="contact-content">
 						<div className="contact-info">
-							<h3>Javite se već danas</h3>
-							<p>
-								Bilo da trebate hitnu pomoć ili planirate veći projekat, tu sam
-								da vam pomognem. Besplatna procjena za sve radove.
-							</p>
+							<div className="contact-hero">
+								<h3>Pozovite ili pošaljite poruku</h3>
+								<p>
+									Bilo da trebate hitnu pomoć ili planirate veći projekat, tu
+									sam da vam pomognem. Besplatna procjena za sve radove.
+								</p>
+							</div>
 
 							<div className="contact-methods">
 								<div className="contact-method">
-									<FontAwesomeIcon icon={faPhone} />
-									<div>
+									<div className="method-icon">
+										<FontAwesomeIcon icon={faPhone} />
+									</div>
+									<div className="method-info">
 										<h4>Telefon</h4>
 										<p>061/456-789</p>
 										<span>Dostupan 24/7</span>
@@ -336,8 +528,10 @@ const Homepage = () => {
 								</div>
 
 								<div className="contact-method">
-									<FontAwesomeIcon icon={faEnvelope} />
-									<div>
+									<div className="method-icon">
+										<FontAwesomeIcon icon={faEnvelope} />
+									</div>
+									<div className="method-info">
 										<h4>Email</h4>
 										<p>emir.saric@email.com</p>
 										<span>Brz odgovor</span>
@@ -345,8 +539,10 @@ const Homepage = () => {
 								</div>
 
 								<div className="contact-method">
-									<FontAwesomeIcon icon={faMapMarkerAlt} />
-									<div>
+									<div className="method-icon">
+										<FontAwesomeIcon icon={faMapMarkerAlt} />
+									</div>
+									<div className="method-info">
 										<h4>Lokacija</h4>
 										<p>Sarajevo, BiH</p>
 										<span>I okolina</span>
@@ -374,6 +570,7 @@ const Homepage = () => {
 									</div>
 								</div>
 								<div className="emergency-note">
+									<FontAwesomeIcon icon={faBolt} />
 									Hitni pozivi dostupni 24 sata dnevno
 								</div>
 							</div>
@@ -464,35 +661,72 @@ const Homepage = () => {
 			<footer className="footer">
 				<div className="container">
 					<div className="footer-content">
-						<div className="footer-section">
+						<div className="footer-brand">
 							<div className="footer-logo">
-								<span className="logo-name">Emir Sarić</span>
-								<span className="logo-title">Električar</span>
+								<img
+									src="/logo.png"
+									alt="Emir Sarić Logo"
+									className="logo-image"
+								/>
+								<div className="logo-text">
+									<span className="logo-name">Emir Sarić</span>
+									<span className="logo-title">Licencirani Električar</span>
+								</div>
 							</div>
 							<p>
 								Profesionalne elektro usluge u Sarajevu i okolini. Licencirani,
-								pouzdan i uvijek dostupan.
+								pouzdan i uvijek dostupan za vaše potrebe.
 							</p>
+							<div className="footer-stats">
+								<span>15+ godina iskustva</span>
+								<span>500+ projekata</span>
+								<span>24/7 podrška</span>
+							</div>
 						</div>
 
 						<div className="footer-section">
 							<h4>Kontakt</h4>
-							<p>061/456-789</p>
-							<p>emir.saric@email.com</p>
-							<p>Sarajevo, BiH</p>
+							<div className="footer-contact">
+								<a href="tel:+38761456789">
+									<FontAwesomeIcon icon={faPhone} />
+									061/456-789
+								</a>
+								<a href="mailto:emir.saric@email.com">
+									<FontAwesomeIcon icon={faEnvelope} />
+									emir.saric@email.com
+								</a>
+								<span>
+									<FontAwesomeIcon icon={faMapMarkerAlt} />
+									Sarajevo, BiH
+								</span>
+							</div>
 						</div>
 
 						<div className="footer-section">
 							<h4>Usluge</h4>
-							<p>Stambeni objekti</p>
-							<p>Poslovni prostori</p>
-							<p>Hitne intervencije</p>
-							<p>EV punjači</p>
+							<div className="footer-services">
+								<span>Stambeni objekti</span>
+								<span>Poslovni prostori</span>
+								<span>Hitne intervencije</span>
+								<span>EV punjači</span>
+								<span>Sigurnosni sistemi</span>
+							</div>
 						</div>
 					</div>
 
 					<div className="footer-bottom">
 						<p>&copy; 2024 Emir Sarić. Sva prava zadržana.</p>
+						<div className="footer-links">
+							<a href="#usluge" onClick={() => scrollToSection("usluge")}>
+								Usluge
+							</a>
+							<a href="#o-meni" onClick={() => scrollToSection("o-meni")}>
+								O meni
+							</a>
+							<a href="#kontakt" onClick={() => scrollToSection("kontakt")}>
+								Kontakt
+							</a>
+						</div>
 					</div>
 				</div>
 			</footer>
