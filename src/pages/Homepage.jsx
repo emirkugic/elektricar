@@ -218,11 +218,6 @@ const Homepage = () => {
 		<div className="homepage">
 			{/* Header */}
 			<header className={`header ${isScrolled ? "scrolled" : ""}`}>
-				<div className="header-electric-bg">
-					<div className="electric-spark spark-1"></div>
-					<div className="electric-spark spark-2"></div>
-					<div className="electric-spark spark-3"></div>
-				</div>
 				<div className="container">
 					<div className="header-content">
 						<div className="logo">
@@ -255,16 +250,28 @@ const Homepage = () => {
 						</nav>
 
 						<div className="header-actions">
-							<a href="tel:+38761456789" className="phone-btn">
+							<div className="header-contact">
+								<span className="contact-label">Pozovite odmah</span>
+								<a href="tel:+38761456789" className="phone-number">
+									<FontAwesomeIcon icon={faPhone} />
+									061/456-789
+								</a>
+							</div>
+
+							<a href="tel:+38761456789" className="cta-button">
 								<FontAwesomeIcon icon={faPhone} />
-								<span>061/456-789</span>
+								<span>Pozovi</span>
 							</a>
 
 							<button
 								className="menu-toggle"
 								onClick={() => setIsMenuOpen(!isMenuOpen)}
 							>
-								<FontAwesomeIcon icon={isMenuOpen ? faTimes : faBars} />
+								<span className={`hamburger ${isMenuOpen ? "active" : ""}`}>
+									<span></span>
+									<span></span>
+									<span></span>
+								</span>
 							</button>
 						</div>
 					</div>
@@ -274,88 +281,95 @@ const Homepage = () => {
 			{/* Hero Section */}
 			<section className="hero" id="home">
 				<div className="hero-background">
-					<img
-						src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
-						alt="Electrical work background"
-						className="hero-bg-image"
-					/>
-					<div className="hero-overlay"></div>
+					<div className="hero-pattern"></div>
 				</div>
 
 				<div className="container">
 					<div className="hero-content">
-						<div className="hero-text">
+						<div className="hero-main">
 							<div className="hero-badge">
 								<FontAwesomeIcon icon={faBolt} />
-								<span>Licencirani električar • 15+ godina iskustva</span>
+								<span>Licencirani električar sa 15+ godina iskustva</span>
 							</div>
 
-							<h1>
-								Vaš <span className="highlight">pouzdani partner</span>
-								<br />
-								za sve elektro potrebe
+							<h1 className="hero-title">
+								Profesionalne elektro usluge
+								<span className="highlight"> u Sarajevu</span>
 							</h1>
 
 							<p className="hero-description">
-								Profesionalne elektro usluge u Sarajevu i okolini. Od kompletnih
-								instalacija do hitnih intervencija - pružam vrhunsku uslugu sa
-								garancijom kvaliteta i dugogodišnjim iskustvom.
+								Od hitnih intervencija do kompletnih instalacija - pružam
+								vrhunske elektro usluge sa garancijom kvaliteta i dugogodišnjim
+								iskustvom. Dostupan 24/7 za sve vaše potrebe.
 							</p>
 
-							<div className="hero-features">
-								<div className="feature">
-									<FontAwesomeIcon icon={faCheckCircle} />
+							<div className="hero-features-grid">
+								<div className="hero-feature">
+									<div className="feature-icon">
+										<FontAwesomeIcon icon={faCheckCircle} />
+									</div>
 									<span>Licencirani i certificirani</span>
 								</div>
-								<div className="feature">
-									<FontAwesomeIcon icon={faClock} />
+								<div className="hero-feature">
+									<div className="feature-icon">
+										<FontAwesomeIcon icon={faClock} />
+									</div>
 									<span>24/7 hitna pomoć</span>
 								</div>
-								<div className="feature">
-									<FontAwesomeIcon icon={faShieldAlt} />
-									<span>12 mjeseci garancije</span>
+								<div className="hero-feature">
+									<div className="feature-icon">
+										<FontAwesomeIcon icon={faShieldAlt} />
+									</div>
+									<span>Garancija 12 mjeseci</span>
 								</div>
-								<div className="feature">
-									<FontAwesomeIcon icon={faAward} />
+								<div className="hero-feature">
+									<div className="feature-icon">
+										<FontAwesomeIcon icon={faAward} />
+									</div>
 									<span>500+ uspješnih projekata</span>
 								</div>
 							</div>
 
-							<div className="hero-actions">
-								<a href="tel:+38761456789" className="btn btn-primary pulse">
+							<div className="hero-cta">
+								<a
+									href="tel:+38761456789"
+									className="btn btn-primary hero-btn-primary"
+								>
 									<FontAwesomeIcon icon={faPhone} />
 									Pozovite odmah
 								</a>
 								<button
-									className="btn btn-secondary"
+									className="btn btn-secondary hero-btn-secondary"
 									onClick={() => scrollToSection("kontakt")}
 								>
 									<FontAwesomeIcon icon={faPaperPlane} />
 									Zatražite ponudu
 								</button>
 							</div>
-
-							<div className="hero-stats">
-								{stats.map((stat, index) => (
-									<div key={index} className="stat">
-										<span className="stat-number">{stat.number}</span>
-										<span className="stat-label">{stat.label}</span>
-									</div>
-								))}
-							</div>
 						</div>
 
 						<div className="hero-visual">
-							<div className="hero-image-card">
+							<div className="hero-image-container">
 								<img
-									src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-									alt="Professional electrical work"
-									className="hero-work-image"
+									src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+									alt="Profesionalni elektro radovi"
+									className="hero-image"
 								/>
-								<div className="work-badge">
-									<FontAwesomeIcon icon={faBolt} />
-									<span>Profesionalan rad</span>
+								<div className="image-overlay">
+									<div className="quality-badge">
+										<FontAwesomeIcon icon={faStar} />
+										<span>Vrhunski kvalitet</span>
+									</div>
 								</div>
+							</div>
+
+							<div className="hero-stats-card">
+								{stats.map((stat, index) => (
+									<div key={index} className="hero-stat">
+										<div className="stat-number">{stat.number}</div>
+										<div className="stat-label">{stat.label}</div>
+									</div>
+								))}
 							</div>
 						</div>
 					</div>
